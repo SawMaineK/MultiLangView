@@ -103,6 +103,7 @@ public class LangController extends DatabaseManager<Lang> {
 					if (cursor.moveToFirst()) {
 						do {
 							lang = new Lang();
+							lang.setId(cursor.getInt(0));
 							lang.setName(cursor.getString(1));
 							lang.setTranslateText(cursor.getString(2));
 							lang.setTranslatedText(cursor.getString(3));
@@ -141,6 +142,7 @@ public class LangController extends DatabaseManager<Lang> {
 					if (cursor.moveToFirst()) {
 						do {
 							lang = new Lang();
+							lang.setId(cursor.getInt(0));
 							lang.setName(cursor.getString(1));
 							lang.setTranslateText(cursor.getString(2));
 							lang.setTranslatedText(cursor.getString(3));
@@ -176,6 +178,7 @@ public class LangController extends DatabaseManager<Lang> {
 					if (cursor.moveToFirst()) {
 						do {
 							Lang lang = new Lang();
+							lang.setId(cursor.getInt(0));
 							lang.setName(cursor.getString(1));
 							lang.setTranslateText(cursor.getString(2));
 							lang.setTranslatedText(cursor.getString(3));
@@ -214,6 +217,7 @@ public class LangController extends DatabaseManager<Lang> {
 					if (cursor.moveToFirst()) {
 						do {
 							Lang lang = new Lang();
+							lang.setId(cursor.getInt(0));
 							lang.setName(cursor.getString(1));
 							lang.setTranslateText(cursor.getString(2));
 							lang.setTranslatedText(cursor.getString(3));
@@ -261,7 +265,7 @@ public class LangController extends DatabaseManager<Lang> {
 				values.put(FIELD[2], lang.getTranslateText());
 				values.put(FIELD[3], lang.getTranslatedText());
 
-				db.update(TABLE, values, FIELD[2]+"=? ", new String[]{lang.getTranslateText().toString()});
+				db.update(TABLE, values, FIELD[0]+"=? ", new String[]{lang.getId().toString()});
 				db.setTransactionSuccessful();
 			} catch (Exception e) {
 				e.printStackTrace();

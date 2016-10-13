@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FunnyTextView/FunnyTextView.iml" filepath="$PROJECT_DIR$/FunnyTextView/FunnyTextView.iml" />
       <module fileurl="file://$PROJECT_DIR$/FunnyTextViewSimple.iml" filepath="$PROJECT_DIR$/FunnyTextViewSimple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MultiLangView/MultiLangView.iml" filepath="$PROJECT_DIR$/MultiLangView/MultiLangView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

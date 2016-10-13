@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by SMK on 9/23/2016.
  */
 public class Lang implements Serializable{
+    private Integer id;
     private String name;
     private String translateText;
     private String translatedText;
@@ -17,6 +18,14 @@ public class Lang implements Serializable{
         this.name = name;
         this.translateText = translateText;
         this.translatedText = translatedText;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,4 +52,13 @@ public class Lang implements Serializable{
         this.translatedText = translatedText;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", translateText='" + translateText + '\'' +
+                ", translatedText='" + translatedText + '\'' +
+                '}';
+    }
 }

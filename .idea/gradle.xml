@@ -9,7 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/FunnyTextView" />
+            <option value="$PROJECT_DIR$/MultiLangView" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

@@ -11,15 +11,9 @@
     android:orientation="vertical"
     tools:context="com.funny.simple.MainActivity">
 
-    <com.smk.funny.FnTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <com.smk.funny.FnTextView
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How are you?" />
+    <ListView
+        android:id="@+id/lst_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
