@@ -9,6 +9,7 @@ public class FnConfigs {
     private Language locale;
     private String msClientId;
     private String msClientSecret;
+    private boolean enableEnglish;
     private static FnConfigs ourInstance;
 
 
@@ -52,5 +53,13 @@ public class FnConfigs {
 
     public void setMsClientSecret(String msClientSecret) {
         this.msClientSecret = msClientSecret;
+    }
+
+    public boolean isEnableEnglish() {
+        return enableEnglish;
+    }
+
+    public void setEnableEnglish(boolean enableEnglish) {
+        this.enableEnglish = enableEnglish;
     }
 }

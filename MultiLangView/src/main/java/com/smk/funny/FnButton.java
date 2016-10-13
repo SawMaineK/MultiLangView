@@ -2,8 +2,10 @@ package com.smk.funny;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.Button;
 
+import com.memetix.mst.language.Language;
 import com.smk.funny.database.DatabaseManager;
 import com.smk.funny.database.controller.LangController;
 import com.smk.funny.database.models.Lang;
@@ -31,8 +33,8 @@ public class FnButton extends Button{
     public void setText(final CharSequence text, final BufferType type) {
         super.setText(text, type);
         final DatabaseManager<Lang> databaseManager = new LangController(getContext());
-        if(FnConfigs.getInstance().getLocale() != null){
-            if(text.length() > 0){
+        if(FnConfigs.getInstance().getLocale() != null && text.length() > 0){
+            if(!FnConfigs.getInstance().getLocale().equals(Language.ENGLISH) || FnConfigs.getInstance().isEnableEnglish()){
                 final Lang lang = databaseManager.find(FnConfigs.getInstance().getLocale().toString(), text.toString());
                 if (lang != null && lang.getTranslatedText() != null && lang.getTranslatedText().length() > 0) {
                     super.setText(lang.getTranslatedText(), type);
@@ -50,16 +52,14 @@ public class FnButton extends Button{
                                     databaseManager.save(new Lang(FnConfigs.getInstance().getLocale().toString(), text.toString(), translatedText));
                                 }
                                 FnButton.super.setText(translatedText, type);
-                            }else{
-                                FnButton.super.setText(translatedText, type);
+                            } else {
+                                Log.e("MultiLangView", translatedText);
                             }
                         }
                     });
                     translate.execute();
                 }
             }
-        }else{
-            FnButton.super.setText("Translate Error => Invalid Locale!", type);
         }
     }
 
