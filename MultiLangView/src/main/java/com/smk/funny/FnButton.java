@@ -32,29 +32,31 @@ public class FnButton extends Button{
         super.setText(text, type);
         final DatabaseManager<Lang> databaseManager = new LangController(getContext());
         if(FnConfigs.getInstance().getLocale() != null){
-            final Lang lang = databaseManager.find(FnConfigs.getInstance().getLocale().toString(), text.toString());
-            if (lang != null && lang.getTranslatedText() != null && lang.getTranslatedText().length() > 0) {
-                super.setText(lang.getTranslatedText(), type);
-            } else {
-                MSTranslator translate = new MSTranslator(getContext(), text.toString());
-                translate.setOnCallbacks(new MSTranslator.Callbacks() {
-                    @Override
-                    public void translated(String translatedText) {
-                        if (!translatedText.contains("Translate Error =>") && !translatedText.contains("TranslateApiException:") && !translatedText.contains("Azure Market Place Translator Subscription")) {
-                            Lang lang = databaseManager.find(FnConfigs.getInstance().getLocale().toString(), text.toString());
-                            if(lang != null) {
-                                lang.setTranslatedText(translatedText);
-                                databaseManager.update(lang);
-                            }else {
-                                databaseManager.save(new Lang(FnConfigs.getInstance().getLocale().toString(), text.toString(), translatedText));
+            if(text.length() > 0){
+                final Lang lang = databaseManager.find(FnConfigs.getInstance().getLocale().toString(), text.toString());
+                if (lang != null && lang.getTranslatedText() != null && lang.getTranslatedText().length() > 0) {
+                    super.setText(lang.getTranslatedText(), type);
+                } else {
+                    MSTranslator translate = new MSTranslator(getContext(), text.toString());
+                    translate.setOnCallbacks(new MSTranslator.Callbacks() {
+                        @Override
+                        public void translated(String translatedText) {
+                            if (!translatedText.contains("Translate Error =>") && !translatedText.contains("TranslateApiException:") && !translatedText.contains("Azure Market Place Translator Subscription")) {
+                                Lang lang = databaseManager.find(FnConfigs.getInstance().getLocale().toString(), text.toString());
+                                if(lang != null) {
+                                    lang.setTranslatedText(translatedText);
+                                    databaseManager.update(lang);
+                                }else {
+                                    databaseManager.save(new Lang(FnConfigs.getInstance().getLocale().toString(), text.toString(), translatedText));
+                                }
+                                FnButton.super.setText(translatedText, type);
+                            }else{
+                                FnButton.super.setText(translatedText, type);
                             }
-                            FnButton.super.setText(translatedText, type);
-                        }else{
-                            FnButton.super.setText(translatedText, type);
                         }
-                    }
-                });
-                translate.execute();
+                    });
+                    translate.execute();
+                }
             }
         }else{
             FnButton.super.setText("Translate Error => Invalid Locale!", type);

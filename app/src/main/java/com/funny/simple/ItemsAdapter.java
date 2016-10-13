@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -44,17 +45,20 @@ public class ItemsAdapter extends BaseAdapter {
 			holder = new ViewHolder();
         	convertView = mInflater.inflate(R.layout.list_item_view, null);
         	holder.txt_name = (TextView) convertView.findViewById(R.id.txt_name);
+        	holder.btn_name = (Button) convertView.findViewById(R.id.btn_name);
         	convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
 
 		holder.txt_name.setText(getItem(arg0));
+		holder.btn_name.setText(getItem(arg0));
 		return convertView;
 	}
 	
 	static class ViewHolder{
 		TextView txt_name;
+		Button btn_name;
 	}
 
 }
